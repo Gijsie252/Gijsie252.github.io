@@ -1,18 +1,342 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="nl">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Gaming World</title>
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #08080d;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 8, 13, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #6c63ff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #6c63ff;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+
+            background:
+                radial-gradient(circle at 20% 30%, #29225c 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, #182f50 0%, transparent 30%),
+                #08080d;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 90px);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #6c63ff;
+        }
+
+        .hero p {
+            color: #aaa;
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: #6c63ff;
+            color: white;
+        }
+
+        .primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+        }
+
+        .secondary {
+            border: 1px solid #444;
+            color: white;
+        }
+
+        .secondary:hover {
+            border-color: #6c63ff;
+            color: #6c63ff;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #888;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            background: #111118;
+            border: 1px solid #24242f;
+            padding: 30px;
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: #6c63ff;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* ABOUT */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .about p {
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #222;
+            color: #666;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+                font-size: 14px;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-   <h1> Dit is Header 1 </h1>
-   <h2> Dit is Header 2 </h2>
-   <h3> Dit is Header 3 </h3>
-   <h4> Dit is Header 4 </h4>
-   <h5> Dit is Header 5 </h5>
-   <h6> Dit is header 6 </h6>
+    <!-- NAVIGATIE -->
+    <nav>
+        <div class="logo">MY<span>WORLD</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#about">Over mij</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+
+            <h1>
+                Welcome to<br>
+                <span>My World.</span>
+            </h1>
+
+            <p>
+                Gaming, sport, avontuur en alles wat ik tof vind.
+                Welkom op mijn eigen website.
+            </p>
+
+            <div class="buttons">
+                <a href="#games" class="btn primary">Bekijk mijn games</a>
+                <a href="#about" class="btn secondary">Meer over mij</a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- GAMES -->
+    <section id="games">
+
+        <div class="section-title">
+            <h2>Mijn interesses</h2>
+            <p>Een paar dingen waar ik graag mee bezig ben.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="card-icon">🎮</div>
+                <h3>Gaming</h3>
+                <p>
+                    Van Rocket League tot Red Dead Redemption 2.
+                    Gaming is een van mijn grootste interesses.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⚽</div>
+                <h3>Voetbal</h3>
+                <p>
+                    Wedstrijden kijken, zelf voetballen en alles
+                    rondom de sport.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">⛷️</div>
+                <h3>Skiën</h3>
+                <p>
+                    Snelheid, bergen en sneeuw. Skiën is een
+                    van mijn favoriete activiteiten.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🌎</div>
+                <h3>Avontuur</h3>
+                <p>
+                    Nieuwe plekken ontdekken en nieuwe dingen
+                    meemaken.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- OVER MIJ -->
+    <section id="about">
+
+        <div class="about">
+
+            <div class="section-title">
+                <h2>Over mij</h2>
+            </div>
+
+            <p>
+                Hey! Welkom op mijn website. Dit is mijn eigen plek
+                op het internet waar ik mijn interesses, projecten
+                en favoriete dingen kan laten zien.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 MyWorld — Gemaakt met HTML & CSS
+    </footer>
 
 </body>
-
 </html>

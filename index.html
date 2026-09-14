@@ -2,18 +2,361 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Mijn Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker 🍪</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3b1f0f, #8b4513);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 42px;
+        }
+
+        #cookieCount {
+            font-size: 28px;
+            margin-top: 10px;
+        }
+
+        .game {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            padding: 50px 20px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #cookie {
+            font-size: 180px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: transform 0.08s;
+            user-select: none;
+        }
+
+        #cookie:hover {
+            transform: scale(1.08);
+        }
+
+        #cookie:active {
+            transform: scale(0.9);
+        }
+
+        #cookiesPerSecond {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .shop {
+            background: rgba(0, 0, 0, 0.35);
+            padding: 25px;
+            border-radius: 20px;
+            width: 320px;
+        }
+
+        .shop h2 {
+            margin-top: 0;
+        }
+
+        .upgrade {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 12px;
+            background: #f4a261;
+            color: #351707;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .upgrade:hover {
+            background: #ffb77a;
+        }
+
+        .upgrade:disabled {
+            background: #777;
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        #reset {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #c0392b;
+            color: white;
+            cursor: pointer;
+        }
+
+        #reset:hover {
+            background: #e74c3c;
+        }
+
+        .floating-cookie {
+            position: fixed;
+            pointer-events: none;
+            font-size: 25px;
+            animation: floatUp 1s ease-out forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Welkom op mijn website!</h1>
+    <header>
+        <h1>🍪 Cookie Clicker</h1>
+        <div id="cookieCount">0 koekjes</div>
+    </header>
 
-    <p>Dit is mijn eerste website die ik met GitHub heb gemaakt.</p>
+    <main class="game">
 
-    <h2>Over mij</h2>
+        <section class="cookie-area">
+            <button id="cookie" onclick="clickCookie()">🍪</button>
 
-    <p>Op deze website vertel ik wat meer over mezelf en mijn interesses.</p>
+            <div id="cookiesPerSecond">
+                0 koekjes per seconde
+            </div>
+
+            <button id="reset" onclick="resetGame()">
+                Reset game
+            </button>
+        </section>
+
+        <section class="shop">
+            <h2>🛒 Winkel</h2>
+
+            <button class="upgrade" id="cursorButton" onclick="buyCursor()">
+                🖱️ Cursor<br>
+                +1 koekje per seconde<br>
+                Kosten: <span id="cursorCost">25</span>
+            </button>
+
+            <button class="upgrade" id="grandmaButton" onclick="buyGrandma()">
+                👵 Oma<br>
+                +5 koekjes per seconde<br>
+                Kosten: <span id="grandmaCost">100</span>
+            </button>
+
+            <button class="upgrade" id="factoryButton" onclick="buyFactory()">
+                🏭 Fabriek<br>
+                +25 koekjes per seconde<br>
+                Kosten: <span id="factoryCost">500</span>
+            </button>
+
+            <button class="upgrade" id="mineButton" onclick="buyMine()">
+                ⛏️ Koekjesmijn<br>
+                +100 koekjes per seconde<br>
+                Kosten: <span id="mineCost">2500</span>
+            </button>
+        </section>
+
+    </main>
+
+    <script>
+        let cookies = 0;
+        let cookiesPerSecond = 0;
+
+        let cursorCost = 25;
+        let grandmaCost = 100;
+        let factoryCost = 500;
+        let mineCost = 2500;
+
+        // -------------------------
+        // Koekje klikken
+        // -------------------------
+
+        function clickCookie() {
+            cookies++;
+
+            createFloatingCookie();
+            updateScreen();
+        }
+
+        // -------------------------
+        // Cursor kopen
+        // -------------------------
+
+        function buyCursor() {
+            if (cookies >= cursorCost) {
+                cookies -= cursorCost;
+                cookiesPerSecond += 1;
+
+                cursorCost = Math.floor(cursorCost * 1.5);
+
+                updateScreen();
+            }
+        }
+
+        // -------------------------
+        // Oma kopen
+        // -------------------------
+
+        function buyGrandma() {
+            if (cookies >= grandmaCost) {
+                cookies -= grandmaCost;
+                cookiesPerSecond += 5;
+
+                grandmaCost = Math.floor(grandmaCost * 1.5);
+
+                updateScreen();
+            }
+        }
+
+        // -------------------------
+        // Fabriek kopen
+        // -------------------------
+
+        function buyFactory() {
+            if (cookies >= factoryCost) {
+                cookies -= factoryCost;
+                cookiesPerSecond += 25;
+
+                factoryCost = Math.floor(factoryCost * 1.5);
+
+                updateScreen();
+            }
+        }
+
+        // -------------------------
+        // Mijn kopen
+        // -------------------------
+
+        function buyMine() {
+            if (cookies >= mineCost) {
+                cookies -= mineCost;
+                cookiesPerSecond += 100;
+
+                mineCost = Math.floor(mineCost * 1.5);
+
+                updateScreen();
+            }
+        }
+
+        // -------------------------
+        // Scherm updaten
+        // -------------------------
+
+        function updateScreen() {
+            document.getElementById("cookieCount").textContent =
+                Math.floor(cookies) + " koekjes";
+
+            document.getElementById("cookiesPerSecond").textContent =
+                cookiesPerSecond + " koekjes per seconde";
+
+            document.getElementById("cursorCost").textContent =
+                cursorCost;
+
+            document.getElementById("grandmaCost").textContent =
+                grandmaCost;
+
+            document.getElementById("factoryCost").textContent =
+                factoryCost;
+
+            document.getElementById("mineCost").textContent =
+                mineCost;
+
+            document.getElementById("cursorButton").disabled =
+                cookies < cursorCost;
+
+            document.getElementById("grandmaButton").disabled =
+                cookies < grandmaCost;
+
+            document.getElementById("factoryButton").disabled =
+                cookies < factoryCost;
+
+            document.getElementById("mineButton").disabled =
+                cookies < mineCost;
+        }
+
+        // -------------------------
+        // Automatische koekjes
+        // -------------------------
+
+        setInterval(function() {
+            cookies += cookiesPerSecond / 10;
+            updateScreen();
+        }, 100);
+
+        // -------------------------
+        // Zwevend koekje
+        // -------------------------
+
+        function createFloatingCookie() {
+            const floating = document.createElement("div");
+
+            floating.textContent = "+1 🍪";
+            floating.className = "floating-cookie";
+
+            floating.style.left =
+                Math.random() * window.innerWidth + "px";
+
+            floating.style.top =
+                Math.random() * window.innerHeight + "px";
+
+            document.body.appendChild(floating);
+
+            setTimeout(function() {
+                floating.remove();
+            }, 1000);
+        }
+
+        // -------------------------
+        // Reset
+        // -------------------------
+
+        function resetGame() {
+            cookies = 0;
+            cookiesPerSecond = 0;
+
+            cursorCost = 25;
+            grandmaCost = 100;
+            factoryCost = 500;
+            mineCost = 2500;
+
+            updateScreen();
+        }
+
+        updateScreen();
+    </script>
 
 </body>
 </html>

@@ -3,360 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Clicker 🍪</title>
+
+    <!-- AANPASSEN: titel van je website -->
+    <title>Mijn Website</title>
 
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #3b1f0f, #8b4513);
-            color: white;
-            text-align: center;
-            min-height: 100vh;
+            font-family: Georgia, serif;
+            background-color: #eee9e9;
+            color: #444;
         }
+
+        /* =========================
+           NAVIGATIE
+        ========================= */
 
         header {
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.25);
+            width: 100%;
+            padding: 30px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1 {
-            margin: 0;
-            font-size: 42px;
-        }
-
-        #cookieCount {
+        .logo h1 {
             font-size: 28px;
+            color: #444;
+        }
+
+        .logo p {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #777;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            margin-left: 25px;
+        }
+
+        nav a:hover {
+            color: #e72d55;
+        }
+
+
+        /* =========================
+           HOOFDGEDEELTE
+        ========================= */
+
+        .hero {
+            max-width: 950px;
+            margin: 30px auto 70px;
+            padding: 0 30px;
+
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+
+        /* =========================
+           FOTO
+        ========================= */
+
+        .profile-image {
+            width: 230px;
+            height: 230px;
+
+            border-radius: 50%;
+            object-fit: cover;
+
+            /* AANPASSEN:
+               Zet hier je eigen foto */
+            background-color: #ccc;
+        }
+
+
+        /* =========================
+           TEKST
+        ========================= */
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 48px;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        .hero-text h3 {
+            font-size: 27px;
+            font-weight: normal;
+            margin-bottom: 18px;
+        }
+
+        .hero-text p {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.6;
+            max-width: 430px;
+            margin-top: 15px;
+        }
+
+
+        /* =========================
+           RONDE KNOPPEN
+        ========================= */
+
+        .buttons {
+            display: flex;
+            gap: 15px;
             margin-top: 10px;
         }
 
-        .game {
+        .circle {
+            width: 78px;
+            height: 78px;
+
+            border-radius: 50%;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 80px;
-            padding: 50px 20px;
-            flex-wrap: wrap;
-        }
 
-        .cookie-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #cookie {
-            font-size: 180px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            transition: transform 0.08s;
-            user-select: none;
-        }
-
-        #cookie:hover {
-            transform: scale(1.08);
-        }
-
-        #cookie:active {
-            transform: scale(0.9);
-        }
-
-        #cookiesPerSecond {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
-        .shop {
-            background: rgba(0, 0, 0, 0.35);
-            padding: 25px;
-            border-radius: 20px;
-            width: 320px;
-        }
-
-        .shop h2 {
-            margin-top: 0;
-        }
-
-        .upgrade {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 12px;
-            background: #f4a261;
-            color: #351707;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .upgrade:hover {
-            background: #ffb77a;
-        }
-
-        .upgrade:disabled {
-            background: #777;
-            color: #ccc;
-            cursor: not-allowed;
-        }
-
-        #reset {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            background: #c0392b;
+            text-decoration: none;
             color: white;
-            cursor: pointer;
+
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            text-align: center;
         }
 
-        #reset:hover {
-            background: #e74c3c;
+        .button1 {
+            background-color: #e72d55;
         }
 
-        .floating-cookie {
-            position: fixed;
-            pointer-events: none;
-            font-size: 25px;
-            animation: floatUp 1s ease-out forwards;
+        .button2 {
+            background-color: #55c5ce;
         }
 
-        @keyframes floatUp {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
+        .button3 {
+            background-color: #d2ca19;
+        }
+
+        .circle:hover {
+            transform: scale(1.08);
+            transition: 0.2s;
+        }
+
+
+        /* =========================
+           VOETTEKST
+        ========================= */
+
+        footer {
+            background-color: #e72d55;
+            color: white;
+
+            min-height: 90px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 70px;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-icon {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background-color: #55c5ce;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 17px;
+        }
+
+        .footer-text {
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           MOBIEL
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
             }
 
-            100% {
-                opacity: 0;
-                transform: translateY(-100px);
+            nav a {
+                margin: 0 8px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
+
+    <!-- =========================
+         BOVENSTE GEDEELTE
+    ========================= -->
+
     <header>
-        <h1>🍪 Cookie Clicker</h1>
-        <div id="cookieCount">0 koekjes</div>
+
+        <div class="logo">
+
+            <!-- AANPASSEN -->
+            <h1>GIJS PONGERS</h1>
+
+            <!-- AANPASSEN -->
+            <p>Ik ben 14 jaar oud en ik zit op het VLC</p>
+
+        </div>
+
+
+        <nav>
+
+            <!-- AANPASSEN -->
+            <a href="#">HOME</a>
+            <a href="#">OVER MIJ</a>
+            <a href="#">AI</a>
+            <a href="#">CONTACT</a>
+
+        </nav>
+
     </header>
 
-    <main class="game">
 
-        <section class="cookie-area">
-            <button id="cookie" onclick="clickCookie()">🍪</button>
 
-            <div id="cookiesPerSecond">
-                0 koekjes per seconde
+    <!-- =========================
+         HOOFDGEDEELTE
+    ========================= -->
+
+    <main>
+
+        <section class="hero">
+
+
+            <!-- FOTO -->
+
+            <div class="profile-image">
+
+                <!--
+                FOTO TOEVOEGEN:
+
+                Zet bijvoorbeeld een afbeelding
+                genaamd "foto.jpg" in dezelfde map.
+
+                Voeg daarna in .profile-image toe:
+
+                background-image: url("foto.jpg");
+                background-size: cover;
+                background-position: center;
+                -->
+
             </div>
 
-            <button id="reset" onclick="resetGame()">
-                Reset game
-            </button>
-        </section>
 
-        <section class="shop">
-            <h2>🛒 Winkel</h2>
 
-            <button class="upgrade" id="cursorButton" onclick="buyCursor()">
-                🖱️ Cursor<br>
-                +1 koekje per seconde<br>
-                Kosten: <span id="cursorCost">25</span>
-            </button>
+            <!-- TEKST -->
 
-            <button class="upgrade" id="grandmaButton" onclick="buyGrandma()">
-                👵 Oma<br>
-                +5 koekjes per seconde<br>
-                Kosten: <span id="grandmaCost">100</span>
-            </button>
+            <div class="hero-text">
 
-            <button class="upgrade" id="factoryButton" onclick="buyFactory()">
-                🏭 Fabriek<br>
-                +25 koekjes per seconde<br>
-                Kosten: <span id="factoryCost">500</span>
-            </button>
+                <!-- AANPASSEN -->
+                <h2>Hallo,</h2>
 
-            <button class="upgrade" id="mineButton" onclick="buyMine()">
-                ⛏️ Koekjesmijn<br>
-                +100 koekjes per seconde<br>
-                Kosten: <span id="mineCost">2500</span>
-            </button>
+                <!-- AANPASSEN -->
+                <h3>een beetje over mij:</h3>
+
+
+                <div class="buttons">
+
+                    <!-- AANPASSEN -->
+                    <a href="#" class="circle button1">
+                        OVER MIJ
+                    </a>
+
+                    <!-- AANPASSEN -->
+                    <a href="#" class="circle button2">
+                        HOBBY'S
+                    </a>
+
+                    <!-- AANPASSEN -->
+                    <a href="#" class="circle button3">
+                        MIJN WERK
+                    </a>
+
+                </div>
+
+
+                <!-- AANPASSEN -->
+                <p>
+                    Ik ben Gijs,
+                    ik hou van sport en zit op het vlietlandcollege
+                </p>
+
+            </div>
+
         </section>
 
     </main>
 
-    <script>
-        let cookies = 0;
-        let cookiesPerSecond = 0;
 
-        let cursorCost = 25;
-        let grandmaCost = 100;
-        let factoryCost = 500;
-        let mineCost = 2500;
 
-        // -------------------------
-        // Koekje klikken
-        // -------------------------
+    <!-- =========================
+         ONDERSTE GEDEELTE
+    ========================= -->
 
-        function clickCookie() {
-            cookies++;
+    <footer>
 
-            createFloatingCookie();
-            updateScreen();
-        }
 
-        // -------------------------
-        // Cursor kopen
-        // -------------------------
+        <div class="footer-item">
 
-        function buyCursor() {
-            if (cookies >= cursorCost) {
-                cookies -= cursorCost;
-                cookiesPerSecond += 1;
+            <div class="footer-icon">
+                ☎
+            </div>
 
-                cursorCost = Math.floor(cursorCost * 1.5);
+            <div class="footer-text">
+                <strong>TELEFOON</strong><br>
+                06-123...
+            </div>
 
-                updateScreen();
-            }
-        }
+        </div>
 
-        // -------------------------
-        // Oma kopen
-        // -------------------------
 
-        function buyGrandma() {
-            if (cookies >= grandmaCost) {
-                cookies -= grandmaCost;
-                cookiesPerSecond += 5;
 
-                grandmaCost = Math.floor(grandmaCost * 1.5);
+        <div class="footer-item">
 
-                updateScreen();
-            }
-        }
+            <div class="footer-icon">
+                ✉
+            </div>
 
-        // -------------------------
-        // Fabriek kopen
-        // -------------------------
+            <div class="footer-text">
+                <strong>E-MAIL</strong><br>
+                Gijs.pongers@vlietlandcollege.nl
+            </div>
 
-        function buyFactory() {
-            if (cookies >= factoryCost) {
-                cookies -= factoryCost;
-                cookiesPerSecond += 25;
+        </div>
 
-                factoryCost = Math.floor(factoryCost * 1.5);
 
-                updateScreen();
-            }
-        }
 
-        // -------------------------
-        // Mijn kopen
-        // -------------------------
+        <div class="footer-item">
 
-        function buyMine() {
-            if (cookies >= mineCost) {
-                cookies -= mineCost;
-                cookiesPerSecond += 100;
+            <div class="footer-icon">
+                +
+            </div>
 
-                mineCost = Math.floor(mineCost * 1.5);
+            <div class="footer-text">
+                <strong>SOCIALE MEDIA</strong><br>
+                @gijsie_cc TIKTOK
+            </div>
 
-                updateScreen();
-            }
-        }
+        </div>
 
-        // -------------------------
-        // Scherm updaten
-        // -------------------------
 
-        function updateScreen() {
-            document.getElementById("cookieCount").textContent =
-                Math.floor(cookies) + " koekjes";
+    </footer>
 
-            document.getElementById("cookiesPerSecond").textContent =
-                cookiesPerSecond + " koekjes per seconde";
-
-            document.getElementById("cursorCost").textContent =
-                cursorCost;
-
-            document.getElementById("grandmaCost").textContent =
-                grandmaCost;
-
-            document.getElementById("factoryCost").textContent =
-                factoryCost;
-
-            document.getElementById("mineCost").textContent =
-                mineCost;
-
-            document.getElementById("cursorButton").disabled =
-                cookies < cursorCost;
-
-            document.getElementById("grandmaButton").disabled =
-                cookies < grandmaCost;
-
-            document.getElementById("factoryButton").disabled =
-                cookies < factoryCost;
-
-            document.getElementById("mineButton").disabled =
-                cookies < mineCost;
-        }
-
-        // -------------------------
-        // Automatische koekjes
-        // -------------------------
-
-        setInterval(function() {
-            cookies += cookiesPerSecond / 10;
-            updateScreen();
-        }, 100);
-
-        // -------------------------
-        // Zwevend koekje
-        // -------------------------
-
-        function createFloatingCookie() {
-            const floating = document.createElement("div");
-
-            floating.textContent = "+1 🍪";
-            floating.className = "floating-cookie";
-
-            floating.style.left =
-                Math.random() * window.innerWidth + "px";
-
-            floating.style.top =
-                Math.random() * window.innerHeight + "px";
-
-            document.body.appendChild(floating);
-
-            setTimeout(function() {
-                floating.remove();
-            }, 1000);
-        }
-
-        // -------------------------
-        // Reset
-        // -------------------------
-
-        function resetGame() {
-            cookies = 0;
-            cookiesPerSecond = 0;
-
-            cursorCost = 25;
-            grandmaCost = 100;
-            factoryCost = 500;
-            mineCost = 2500;
-
-            updateScreen();
-        }
-
-        updateScreen();
-    </script>
 
 </body>
 </html>
